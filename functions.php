@@ -62,3 +62,26 @@ if (!function_exists('add_styles')) { // если ф-я уже есть в до�
         wp_enqueue_style( 'icomoon', get_template_directory_uri().'/css/icomoon.css' );
     }
 }
+
+function setPostViews($postID) {
+    $count_key = 'views';
+    $count = get_post_meta( $postID, $count_key, true );
+    if( $count == '' ){
+        $count = 0;
+        delete_post_meta($postID, $count_key);
+        add_post_meta( $postID, $count_key, '0' );
+    } else {
+        $count++;
+        update_post_meta( $postID, $count_key, $count );
+    }
+}
+function getPostViews($postID){
+    $count_key = 'views';
+    $count = get_post_meta( $postID, $count_key, true );
+    if($count==''){
+        delete_post_meta( $postID, $count_key );
+        add_post_meta( $postID,	$count_key,	'0' );
+        return	"0";
+    }
+    return	$count;
+}
