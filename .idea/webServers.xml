@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="6c4102d9-45dd-4e9d-9190-eaf4bfab07f5" name="oportfolio" url="http://ftp.oportfolio.ru">
+        <fileTransfer host="ftp.oportfolio.ru" port="21" rootFolder="/domains/oportfolio.ru/public_html">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

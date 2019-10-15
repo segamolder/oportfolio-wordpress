@@ -5,6 +5,20 @@ register_nav_menus(array( // Регистрируем 2 меню
     'bottom' => 'Внизу' // Внизу
 ));
 
+add_theme_support( 'post-thumbnails' );
+
+add_filter( 'excerpt_length', function(){
+    return 20;
+} );
+add_filter('excerpt_more', function($more) {
+    return '...';
+});
+add_filter( 'excerpt_more', 'new_excerpt_more' );
+function new_excerpt_more( $more ){
+    global $post;
+    return '<a href="'. get_permalink($post) . '">...<br/><br/>Читать дальше...</a>';
+}
+
 add_action('wp_footer', 'add_scripts'); // приклеем ф-ю на добавление скриптов в футер
 if (!function_exists('add_scripts')) { // если ф-я уже есть в дочерней теме - нам не надо её определять
     function add_scripts() { // добавление скриптов

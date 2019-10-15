@@ -3,7 +3,9 @@
 <div id="colorlib-page">
     <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
     <aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
-        <h1 id="colorlib-logo"><a href="index.html"><span class="img" style="background-image: url(<?echo get_template_directory_uri().'/images/author.jpg'?>);"></span>Louie Smith</a></h1>
+        <h1 id="colorlib-logo"><a href="index.html"><span class="img"
+                                                          style="background-image: url(<? echo get_template_directory_uri() . '/images/author.jpg' ?>);"></span>Louie
+                Smith</a></h1>
         <nav id="colorlib-main-menu" role="navigation">
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -32,7 +34,8 @@
             <div class="container">
                 <div class="row no-gutters slider-text justify-content-center align-items-center">
                     <div class="col-md-8 ftco-animate">
-                        <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Blog</span></p>
+                        <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Blog</span>
+                        </p>
                         <h1 class="bread">Read Our Blog</h1>
                     </div>
                 </div>
@@ -43,158 +46,69 @@
                 <div class="row d-flex">
                     <div class="col-lg-8">
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="blog-entry ftco-animate d-md-flex">
-                                    <a href="single.html" class="img img-2" style="background-image: url(<?echo get_template_directory_uri().'/images/image_1.jpg'?>);"></a>
-                                    <div class="text text-2 p-4">
-                                        <h3 class="mb-2"><a href="single.html">The Photography Technique</a></h3>
-                                        <div class="meta-wrap">
-                                            <p class="meta">
-                                                <span>Dec 14, 2018</span>
-                                                <span><a href="single.html">Photography</a></span>
-                                                <span>5 Comment</span>
-                                            </p>
+                            <?php
+                            $btpgid = get_queried_object_id();
+                            $btmetanm = get_post_meta($btpgid, 'WP_Catid', 'true');
+                            $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+
+                            $args = array('posts_per_page' => 1, 'category_name' => $btmetanm,
+                                'paged' => $paged, 'post_type' => 'post');
+                            $postslist = new WP_Query($args);
+
+                            if ($postslist->have_posts()) :
+                            while ($postslist->have_posts()) : $postslist->the_post();
+                                $image = wp_get_attachment_url(get_post_thumbnail_id($post->ID), 'thumbnail');
+                                ?>
+                                <div class="col-md-12">
+                                    <div class="blog-entry ftco-animate d-md-flex">
+                                        <a href="single.html" class="img img-2" style="background-image: url('<?
+                                        echo $image ?>');"></a>
+                                        <div class="text text-2 px-4">
+                                            <h3 class="mb-2"><a href="single.html"><? echo the_title(); ?></a>
+                                            </h3>
+                                            <div class="meta-wrap">
+                                                <p class="meta">
+                                                    <span><? echo get_the_date('d.m.Y', get_the_ID()) ?></span>
+                                                    <span><a href="single.html"><? foreach (get_the_category(get_the_ID()) as $category) {
+                                                                echo $category->cat_name;
+                                                            } ?></a></span>
+                                                    <span><? echo get_comments_number(get_the_ID()) ?> <span
+                                                                class="icon-comments-o"></span></span>
+                                                </p>
+                                            </div>
+                                            <? echo the_excerpt() ?>
                                         </div>
-                                        <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                                        <p><a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="blog-entry ftco-animate d-md-flex">
-                                    <a href="single.html" class="img img-2" style="background-image: url(<?echo get_template_directory_uri().'/images/image_2.jpg'?>);"></a>
-                                    <div class="text text-2 p-4">
-                                        <h3 class="mb-2"><a href="single.html">The Photography Technique</a></h3>
-                                        <div class="meta-wrap">
-                                            <p class="meta">
-                                                <span>Dec 14, 2018</span>
-                                                <span><a href="single.html">Photography</a></span>
-                                                <span>5 Comment</span>
-                                            </p>
-                                        </div>
-                                        <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                                        <p><a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="blog-entry ftco-animate d-md-flex">
-                                    <a href="single.html" class="img img-2" style="background-image: url(<?echo get_template_directory_uri().'/images/image_3.jpg'?>);"></a>
-                                    <div class="text text-2 p-4">
-                                        <h3 class="mb-2"><a href="single.html">The Photography Technique</a></h3>
-                                        <div class="meta-wrap">
-                                            <p class="meta">
-                                                <span>Dec 14, 2018</span>
-                                                <span><a href="single.html">Photography</a></span>
-                                                <span>5 Comment</span>
-                                            </p>
-                                        </div>
-                                        <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                                        <p><a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="blog-entry ftco-animate d-md-flex">
-                                    <a href="single.html" class="img img-2" style="background-image: url(<?echo get_template_directory_uri().'/images/image_4.jpg'?>);"></a>
-                                    <div class="text text-2 p-4">
-                                        <h3 class="mb-2"><a href="single.html">The Photography Technique</a></h3>
-                                        <div class="meta-wrap">
-                                            <p class="meta">
-                                                <span>Dec 14, 2018</span>
-                                                <span><a href="single.html">Photography</a></span>
-                                                <span>5 Comment</span>
-                                            </p>
-                                        </div>
-                                        <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                                        <p><a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="blog-entry ftco-animate d-md-flex">
-                                    <a href="single.html" class="img img-2" style="background-image: url(<?echo get_template_directory_uri().'/images/image_5.jpg'?>);"></a>
-                                    <div class="text text-2 p-4">
-                                        <h3 class="mb-2"><a href="single.html">The Photography Technique</a></h3>
-                                        <div class="meta-wrap">
-                                            <p class="meta">
-                                                <span>Dec 14, 2018</span>
-                                                <span><a href="single.html">Photography</a></span>
-                                                <span>5 Comment</span>
-                                            </p>
-                                        </div>
-                                        <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                                        <p><a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="blog-entry ftco-animate d-md-flex">
-                                    <a href="single.html" class="img img-2" style="background-image: url(<?echo get_template_directory_uri().'/images/image_6.jpg'?>);"></a>
-                                    <div class="text text-2 p-4">
-                                        <h3 class="mb-2"><a href="single.html">The Photography Technique</a></h3>
-                                        <div class="meta-wrap">
-                                            <p class="meta">
-                                                <span>Dec 14, 2018</span>
-                                                <span><a href="single.html">Photography</a></span>
-                                                <span>5 Comment</span>
-                                            </p>
-                                        </div>
-                                        <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                                        <p><a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="blog-entry ftco-animate d-md-flex">
-                                    <a href="single.html" class="img img-2" style="background-image: url(<?echo get_template_directory_uri().'/images/image_7.jpg'?>);"></a>
-                                    <div class="text text-2 p-4">
-                                        <h3 class="mb-2"><a href="single.html">The Photography Technique</a></h3>
-                                        <div class="meta-wrap">
-                                            <p class="meta">
-                                                <span>Dec 14, 2018</span>
-                                                <span><a href="single.html">Photography</a></span>
-                                                <span>5 Comment</span>
-                                            </p>
-                                        </div>
-                                        <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                                        <p><a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="blog-entry ftco-animate d-md-flex">
-                                    <a href="single.html" class="img img-2" style="background-image: url(<?echo get_template_directory_uri().'/images/image_8.jpg'?>);"></a>
-                                    <div class="text text-2 p-4">
-                                        <h3 class="mb-2"><a href="single.html">The Photography Technique</a></h3>
-                                        <div class="meta-wrap">
-                                            <p class="meta">
-                                                <span>Dec 14, 2018</span>
-                                                <span><a href="single.html">Photography</a></span>
-                                                <span>5 Comment</span>
-                                            </p>
-                                        </div>
-                                        <p class="mb-4">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                                        <p><a href="#" class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- END-->
+
+                            <? endwhile;
+                            ?>
+                        </div>
                         <div class="row">
                             <div class="col">
                                 <div class="block-27">
                                     <ul>
-                                        <li><a href="#">&lt;</a></li>
-                                        <li class="active"><span>1</span></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">4</a></li>
-                                        <li><a href="#">5</a></li>
-                                        <li><a href="#">&gt;</a></li>
+                                        <li><? previous_posts_link('&lt;') ?></li>
+                                        <? for ($i = 1; $i < $postslist->max_num_pages + 1; $i++) {
+                                            ?>
+                                            <li><a href="<? echo get_site_url() . '/blog/page/' . $i ?>"><?
+                                                    echo $i ?></a></li>
+                                            <?
+                                        } ?>
+                                        <li><? next_posts_link('&gt;', $postslist->max_num_pages); ?></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
+
+                        <?
+                        //                                next_posts_link('Предыдущие записи &lt;', $postslist->max_num_pages);
+                        //                                previous_posts_link('Следующие записи &gt;');
+                        wp_reset_postdata();
+
+                        endif;
+                        ?>
+                        <!-- END-->
                     </div>
                     <div class="col-lg-4 sidebar ftco-animate bg-light">
                         <div class="sidebar-box">
@@ -219,9 +133,11 @@
                         <div class="sidebar-box ftco-animate">
                             <h3 class="sidebar-heading">Popular Articles</h3>
                             <div class="block-21 mb-4 d-flex">
-                                <a class="blog-img mr-4" style="background-image: url(<?echo get_template_directory_uri().'/images/image_1.jpg'?>);"></a>
+                                <a class="blog-img mr-4"
+                                   style="background-image: url(<? echo get_template_directory_uri() . '/images/image_1.jpg' ?>);"></a>
                                 <div class="text">
-                                    <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control</a></h3>
+                                    <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control</a>
+                                    </h3>
                                     <div class="meta">
                                         <div><a href="#"><span class="icon-calendar"></span> Dec. 14, 2018</a></div>
                                         <div><a href="#"><span class="icon-person"></span> Dave Lewis</a></div>
@@ -230,9 +146,11 @@
                                 </div>
                             </div>
                             <div class="block-21 mb-4 d-flex">
-                                <a class="blog-img mr-4" style="background-image: url(<?echo get_template_directory_uri().'/images/image_2.jpg'?>);"></a>
+                                <a class="blog-img mr-4"
+                                   style="background-image: url(<? echo get_template_directory_uri() . '/images/image_2.jpg' ?>);"></a>
                                 <div class="text">
-                                    <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control</a></h3>
+                                    <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control</a>
+                                    </h3>
                                     <div class="meta">
                                         <div><a href="#"><span class="icon-calendar"></span> Dec. 14, 2018</a></div>
                                         <div><a href="#"><span class="icon-person"></span> Dave Lewis</a></div>
@@ -241,9 +159,11 @@
                                 </div>
                             </div>
                             <div class="block-21 mb-4 d-flex">
-                                <a class="blog-img mr-4" style="background-image: url(<?echo get_template_directory_uri().'/images/image_3.jpg'?>);"></a>
+                                <a class="blog-img mr-4"
+                                   style="background-image: url(<? echo get_template_directory_uri() . '/images/image_3.jpg' ?>);"></a>
                                 <div class="text">
-                                    <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control</a></h3>
+                                    <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control</a>
+                                    </h3>
                                     <div class="meta">
                                         <div><a href="#"><span class="icon-calendar"></span> Dec. 14, 2018</a></div>
                                         <div><a href="#"><span class="icon-person"></span> Dave Lewis</a></div>
@@ -267,7 +187,8 @@
                             </ul>
                         </div>
 
-                        <div class="sidebar-box subs-wrap img" style="background-image: url(<?echo get_template_directory_uri().'/images/bg_1.jpg'?>);">
+                        <div class="sidebar-box subs-wrap img"
+                             style="background-image: url(<? echo get_template_directory_uri() . '/images/bg_1.jpg' ?>);">
                             <div class="overlay"></div>
                             <h3 class="mb-4 sidebar-heading">Newsletter</h3>
                             <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia</p>
@@ -294,7 +215,8 @@
 
                         <div class="sidebar-box ftco-animate">
                             <h3 class="sidebar-heading">Paragraph</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem
+                                necessitatibus voluptate quod mollitia delectus aut.</p>
                         </div>
                     </div><!-- END COL -->
                 </div>
@@ -307,12 +229,24 @@
                         <div class="ftco-footer-widget mb-4 ml-md-4">
                             <h2 class="ftco-heading-2">Recent Photos</h2>
                             <ul class="list-unstyled photo">
-                                <li><a href="#" class="img" style="background-image: url(<?echo get_template_directory_uri().'/images/image_1.jpg'?>);"></a></li>
-                                <li><a href="#" class="img" style="background-image: url(<?echo get_template_directory_uri().'/images/image_2.jpg'?>);"></a></li>
-                                <li><a href="#" class="img" style="background-image: url(<?echo get_template_directory_uri().'/images/image_3.jpg'?>);"></a></li>
-                                <li><a href="#" class="img" style="background-image: url(<?echo get_template_directory_uri().'/images/image_4.jpg'?>);"></a></li>
-                                <li><a href="#" class="img" style="background-image: url(<?echo get_template_directory_uri().'/images/image_5.jpg'?>);"></a></li>
-                                <li><a href="#" class="img" style="background-image: url(<?echo get_template_directory_uri().'/images/image_6.jpg'?>);"></a></li>
+                                <li><a href="#" class="img"
+                                       style="background-image: url(<? echo get_template_directory_uri() . '/images/image_1.jpg' ?>);"></a>
+                                </li>
+                                <li><a href="#" class="img"
+                                       style="background-image: url(<? echo get_template_directory_uri() . '/images/image_2.jpg' ?>);"></a>
+                                </li>
+                                <li><a href="#" class="img"
+                                       style="background-image: url(<? echo get_template_directory_uri() . '/images/image_3.jpg' ?>);"></a>
+                                </li>
+                                <li><a href="#" class="img"
+                                       style="background-image: url(<? echo get_template_directory_uri() . '/images/image_4.jpg' ?>);"></a>
+                                </li>
+                                <li><a href="#" class="img"
+                                       style="background-image: url(<? echo get_template_directory_uri() . '/images/image_5.jpg' ?>);"></a>
+                                </li>
+                                <li><a href="#" class="img"
+                                       style="background-image: url(<? echo get_template_directory_uri() . '/images/image_6.jpg' ?>);"></a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -333,9 +267,12 @@
                             <h2 class="ftco-heading-2">Have a Questions?</h2>
                             <div class="block-23 mb-3">
                                 <ul>
-                                    <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-                                    <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-                                    <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
+                                    <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span>
+                                    </li>
+                                    <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a>
+                                    </li>
+                                    <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -345,7 +282,10 @@
                     <div class="col-md-12">
 
                         <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                            All rights reserved | This template is made with <i class="icon-heart"
+                                                                                aria-hidden="true"></i> by <a
+                                    href="https://colorlib.com" target="_blank">Colorlib</a>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                     </div>
                 </div>
@@ -355,7 +295,13 @@
 </div><!-- END COLORLIB-PAGE -->
 
 <!-- loader -->
-<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+<div id="ftco-loader" class="show fullscreen">
+    <svg class="circular" width="48px" height="48px">
+        <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/>
+        <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+                stroke="#F96D00"/>
+    </svg>
+</div>
 
 <? get_footer() ?>
 
