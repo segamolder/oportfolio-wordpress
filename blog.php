@@ -4,7 +4,7 @@
     <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
     <? get_sidebar(); ?>
     <div id="colorlib-main">
-        <section class="ftco-section ftco-bread">
+        <section class="ftco-section ftco-bread background-blog-image">
             <div class="container">
                 <div class="row no-gutters slider-text justify-content-center align-items-center">
                     <div class="col-md-8 ftco-animate">

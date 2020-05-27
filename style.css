@@ -8021,7 +8021,9 @@ h1, h2, h3, h4, h5,
       border-bottom: 2px solid rgba(0, 0, 0, 0.1);
       color: black; }
       .ftco-bread .breadcrumbs span a {
-        color: rgba(0, 0, 0, 0.5); }
+        color: black;
+    text-shadow: 1px 1px 1px white;
+      }
   .ftco-bread .bread {
     font-weight: 700;
     color: #000000;
@@ -8764,4 +8766,44 @@ textarea.form-control {
 .custom-github-image:hover {
     transform: scale(1.2);
     transition: all .5s;
+}
+
+#colorlib-main .background-blog-image {
+  background-image: url('images/bg_1.jpg') !important;
+  background-position: bottom !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+}
+
+.skill-image {
+  width: inherit;
+  border: 2px solid black;
+  border-radius: 25px;
+  padding: 10px;
+  box-shadow: 1px 1px 4px #666;
+}
+
+.grid-skills {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 100px);
+  grid-gap: 5px;
+}
+
+.skills-item-link {
+  color:black;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.skills-item-link:hover {
+  color:#78d5ef;
+  text-decoration: underline;
+}
+
+img.checked {
+  width: 15px;
+  height: 15px;
 }
